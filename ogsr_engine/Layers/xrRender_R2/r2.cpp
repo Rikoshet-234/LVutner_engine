@@ -705,6 +705,12 @@ HRESULT	CRender::shader_compile(
 		def_it++;
 	}
 
+	if (ps_r2_ls_flags.test(R2FLAG_ACES_TONEMAP))		{
+		defines[def_it].Name		=	"USE_ACES_TONEMAPPING";
+		defines[def_it].Definition	=	"1";
+		def_it++;
+	}
+
 	sprintf(str, "%d", u32(ps_r2_blur_params.y));
 	defines[def_it].Name = "NUM_OF_BLUR_SAMPLES";
 	defines[def_it].Definition = str;

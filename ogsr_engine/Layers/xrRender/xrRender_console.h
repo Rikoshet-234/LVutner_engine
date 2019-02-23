@@ -199,6 +199,7 @@ enum
 	R2FLAG_PUDDLES = (1 << 28),
 	R2FLAG_AO = (1 << 29),
 	R2FLAG_ACTOR_SHADOW = (1 << 30),
+	R2FLAG_ACES_TONEMAP		= (1<<31),
 };
 
 // enum for my test stuff :)

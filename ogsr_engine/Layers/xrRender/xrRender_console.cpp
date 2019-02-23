@@ -617,6 +617,7 @@ void		xrRender_initconsole	()
 	CMD3(CCC_Token, "r2_aa_mode", &ps_aa_mode, aa_mode_token);
 	CMD3(CCC_Token, "r2_sunshafts_mode", &ps_sunshafts_mode, sunshafts_mode_token);
 
+	CMD3(CCC_Mask, "r2_aces_tonemapping",	&ps_r2_ls_flags, R2FLAG_ACES_TONEMAP);
 	CMD5(CCC_PP, "r2_aa", &ps_aa_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_AA);
 	CMD5(CCC_PP, "r2_dof_quality", &ps_dof_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_DOF);
 	CMD5(CCC_PP, "r2_sunshafts", &ps_sunshafts_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_SUNSHAFTS);
