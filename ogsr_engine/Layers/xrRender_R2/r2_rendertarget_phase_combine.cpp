@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "..\xrRender\xrRender_console.h"
 #include "r2_fog_volumes.h"
 #include "r2_puddles.h"
@@ -200,6 +200,8 @@ void	CRenderTarget::phase_combine	()
 			if (ps_r2_pp_flags.test(R2PP_FLAG_DOF))						phase_dof();
 			if (ps_r2_pp_flags.test(R2PP_FLAG_MBLUR))					phase_motion_blur();
 			// screen space "eyes" effects
+			phase_gasmask_dudv();
+			phase_gasmask_diffuse();
 			if (ps_r2_pp_flags.test(R2PP_FLAG_RAIN_DROPS)
 				&& ps_r2_pp_flags.test(R2PP_FLAG_RAIN_DROPS_CONTROL))	phase_rain_drops();
 		}
@@ -259,6 +261,7 @@ void	CRenderTarget::phase_combine	()
 		pv->p.set(float(_w+EPS),EPS,			EPS,1.f); pv->uv0.set(p1.x, p0.y);pv->uv1.set(p1.x-ddw,p0.y-ddh);pv->uv2.set(p1.x+ddw,p0.y+ddh);pv->uv3.set(p1.x+ddw,p0.y-ddh);pv->uv4.set(p1.x-ddw,p0.y+ddh);pv->uv5.set(p1.x-ddw,p0.y,p0.y,p1.x+ddw);pv->uv6.set(p1.x,p0.y-ddh,p0.y+ddh,p1.x);pv++;
 		RCache.Vertex.Unlock		(4,g_aa_AA->vb_stride);
 
+
 		// Draw COLOR
 //		if (ps_r2_ls_flags.test(R2FLAG_AA))			RCache.set_Element	(s_combine->E[bDistort?3:1]);	// look at blender_combine.cpp
 /*		else										*/RCache.set_Element	(s_combine->E[bDistort?4:2]);	// look at blender_combine.cpp
@@ -268,6 +271,13 @@ void	CRenderTarget::phase_combine	()
 		RCache.set_c				("m_current",	m_current);
 		RCache.set_c				("m_previous",	m_previous);
 		RCache.set_c				("m_blur",		m_blur_scale.x,m_blur_scale.y, 0,0);*/
+		RCache.set_c				("mask_control",	ps_r2_mask_control,	ps_r2_mask_control,	ps_r2_mask_control,	0);
+		
+		RCache.set_c				("Desaturation",	ps_r2_ft_desaturation,	ps_r2_ft_desaturation,	ps_r2_ft_desaturation,	0);
+		RCache.set_c				("HueShift",	ps_r2_ft_hueshift,	ps_r2_ft_hueshift,	ps_r2_ft_hueshift,	0);
+		RCache.set_c				("Resaturation",	ps_r2_ft_resaturation,	ps_r2_ft_resaturation,	ps_r2_ft_resaturation,	0);
+		RCache.set_c				("Saturation",	ps_r2_ft_saturation,	ps_r2_ft_saturation,	ps_r2_ft_saturation,	0);
+
 		RCache.set_c("c_color_grading", ps_r2_color_grading_params);
 		RCache.set_Geometry			(g_aa_AA);
 		RCache.Render				(D3DPT_TRIANGLELIST,Offset,0,4,0,2);

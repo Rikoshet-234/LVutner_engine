@@ -206,6 +206,15 @@ int			ps_r2_wait_sleep			= 0;
 float		ps_r2_lt_smooth				= 1.f;				// 1.f
 float		ps_r2_slight_fade			= 1.f;				// 1.f
 
+float		ps_r2_mask_control				= .0f;				// r2-only
+
+
+float		ps_r2_ft_desaturation				= 1.f;				// r2-only
+float		ps_r2_ft_hueshift				= 1.f;				// r2-only
+float		ps_r2_ft_resaturation				= 1.f;				// r2-only
+float		ps_r2_ft_saturation				= 1.f;				// r2-only
+
+
 // KD start
 Flags32		ps_common_flags				= { 0 };		// r1-only
 u32			dm_size						= 24;
@@ -572,7 +581,13 @@ void		xrRender_initconsole	()
 /*	CMD3(CCC_Mask,		"r2_aa",				&ps_r2_ls_flags,			R2FLAG_AA);
 	CMD4(CCC_Float,		"r2_aa_kernel",			&ps_r2_aa_kernel,			0.3f,	0.7f	);
 	CMD4(CCC_Float,		"r2_mblur",				&ps_r2_mblur,				0.0f,	1.0f	);*/
-
+	CMD4(CCC_Float,		"r2_mask_control",			&ps_r2_mask_control,			0.0f,	10.0f	);
+///////////////////////////////////////
+	CMD4(CCC_Float,		"r2_ft_desaturation",			&ps_r2_ft_desaturation,			0.0f,	1.0f	);
+	CMD4(CCC_Float,		"r2_ft_hueshift",			&ps_r2_ft_hueshift,			0.0f,	1.0f	);
+	CMD4(CCC_Float,		"r2_ft_resaturation",			&ps_r2_ft_resaturation,			0.0f,	1.0f	);
+	CMD4(CCC_Float,		"r2_ft_saturation",			&ps_r2_ft_saturation,			0.0f,	1.0f	);
+//////////////////////////////////////
 	CMD4(CCC_Float,		"r2_mblur_amount",		&ps_r2_mblur, 0.0f, 1.0f);
 
 	CMD3(CCC_Mask,		"r2_gi",				&ps_r2_ls_flags,			R2FLAG_GI);
@@ -618,6 +633,7 @@ void		xrRender_initconsole	()
 	CMD3(CCC_Token, "r2_sunshafts_mode", &ps_sunshafts_mode, sunshafts_mode_token);
 
 	CMD3(CCC_Mask, "r2_aces_tonemapping",	&ps_r2_ls_flags, R2FLAG_ACES_TONEMAP);
+	
 	CMD5(CCC_PP, "r2_aa", &ps_aa_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_AA);
 	CMD5(CCC_PP, "r2_dof_quality", &ps_dof_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_DOF);
 	CMD5(CCC_PP, "r2_sunshafts", &ps_sunshafts_quality, ext_quality_token, &ps_r2_pp_flags, R2PP_FLAG_SUNSHAFTS);

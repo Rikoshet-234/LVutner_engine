@@ -273,6 +273,8 @@
     <ClInclude Include="Blender_DOF.h" />
     <ClInclude Include="Blender_flare.h" />
     <ClInclude Include="Blender_fog_volume.h" />
+    <ClInclude Include="blender_gasmask_diffuse.h" />
+    <ClInclude Include="blender_gasmask_dudv.h" />
     <ClInclude Include="Blender_ikvision.h" />
     <ClInclude Include="Blender_mblur.h" />
     <ClInclude Include="Blender_rain_drops.h" />
@@ -352,6 +354,8 @@
     <ClCompile Include="blender_blur.cpp" />
     <ClCompile Include="blender_dof.cpp" />
     <ClCompile Include="blender_fog_volume.cpp" />
+    <ClCompile Include="blender_gasmask_diffuse.cpp" />
+    <ClCompile Include="blender_gasmask_dudv.cpp" />
     <ClCompile Include="blender_ikvision.cpp" />
     <ClCompile Include="blender_mblur.cpp" />
     <ClCompile Include="blender_rain_drops.cpp" />
@@ -367,6 +371,8 @@
     <ClCompile Include="r2_rendertarget_phase_aa.cpp" />
     <ClCompile Include="r2_rendertarget_phase_blur.cpp" />
     <ClCompile Include="r2_rendertarget_phase_dof.cpp" />
+    <ClCompile Include="r2_rendertarget_phase_gasmask_diffuse.cpp" />
+    <ClCompile Include="r2_rendertarget_phase_gasmask_dudv.cpp" />
     <ClCompile Include="r2_rendertarget_phase_motion_blur.cpp" />
     <ClCompile Include="r2_rendertarget_phase_puddles.cpp" />
     <ClCompile Include="r2_rendertarget_phase_rain_drops.cpp" />

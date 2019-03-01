@@ -20,7 +20,10 @@
 #include "blender_reflections.h"
 #include "blender_volumetric.h"
 #include "blender_rmap.h"
-
+////////////////////////////
+#include "blender_gasmask_dudv.h"
+#include "blender_gasmask_diffuse.h"
+////////////////////////////
 void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt& _3, IDirect3DSurface9* zb)
 {
 	VERIFY									(_1);
@@ -262,6 +265,10 @@ CRenderTarget::CRenderTarget		()
 	b_volumetric = xr_new<CBlender_volumetric>();
 	b_rmap = xr_new<CBlender_rmap>();
 	// KD blenders end
+///////////////////////////////////
+	b_gasmask_dudv = xr_new<CBlender_gasmask_dudv>();
+	b_gasmask_diffuse = xr_new<CBlender_gasmask_diffuse>();
+///////////////////////////////////
 
 	// KD shaders
 	s_sunshafts.create(b_sunshafts, "r2\\sunshafts");
@@ -276,7 +283,10 @@ CRenderTarget::CRenderTarget		()
 	s_reflections.create(b_reflections, "r2\\ogse_wet_reflections");
 	s_water.create("effects\\puddles", "water\\water_water");
 	s_rmap.create(b_rmap, "r2\\rmap");
-
+///////////////////////////////////	
+	s_gasmask_dudv.create (b_gasmask_dudv,  "r2\\gasmask_dudv");
+	s_gasmask_diffuse.create (b_gasmask_diffuse,  "r2\\gasmask_diffuse");
+///////////////////////////////////
 	u32		w = Device.dwWidth, h = Device.dwHeight;
 	//	NORMAL
 	{
@@ -745,4 +755,8 @@ CRenderTarget::~CRenderTarget	()
 	xr_delete(b_ssao);
 	xr_delete(b_aa);
 	xr_delete(b_volumetric);
+/////////////////	
+	xr_delete(b_gasmask_dudv);
+	xr_delete(b_gasmask_diffuse);
+//////////////////////	
 }

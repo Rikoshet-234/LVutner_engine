@@ -395,6 +395,8 @@ outloop:
 
 void CConsole::Show			()
 {
+	if (!(strstr(Core.Params, "-idinahuj")))
+		return;
 	if (bVisible)			return;
 	bVisible				= true;
 

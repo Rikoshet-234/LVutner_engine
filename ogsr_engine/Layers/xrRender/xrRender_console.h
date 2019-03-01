@@ -99,6 +99,14 @@ extern ECORE_API float			ps_r2_slight_fade;			// 1.f
 extern ECORE_API int			ps_r2_wait_sleep;
 extern ECORE_API int ps_GlowsPerFrame;
 
+extern ECORE_API float			ps_r2_mask_control;			// r2-only
+
+
+extern ECORE_API float			ps_r2_ft_desaturation;
+extern ECORE_API float			ps_r2_ft_hueshift;
+extern ECORE_API float			ps_r2_ft_resaturation;	
+extern ECORE_API float			ps_r2_ft_saturation;
+
 extern void						xrRender_initconsole	();
 extern BOOL						xrRender_test_hw		();
 

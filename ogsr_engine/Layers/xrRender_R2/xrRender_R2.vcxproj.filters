@@ -285,6 +285,12 @@
     <ClInclude Include="..\xrRender\dxGlowManager.h">
       <Filter>Glow</Filter>
     </ClInclude>
+    <ClInclude Include="blender_gasmask_diffuse.h">
+      <Filter>Shading templates</Filter>
+    </ClInclude>
+    <ClInclude Include="blender_gasmask_dudv.h">
+      <Filter>Shading templates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -667,6 +673,18 @@
     </ClCompile>
     <ClCompile Include="..\xrRender\dxGlowManager.cpp">
       <Filter>Glow</Filter>
+    </ClCompile>
+    <ClCompile Include="blender_gasmask_diffuse.cpp">
+      <Filter>Shading templates</Filter>
+    </ClCompile>
+    <ClCompile Include="blender_gasmask_dudv.cpp">
+      <Filter>Shading templates</Filter>
+    </ClCompile>
+    <ClCompile Include="r2_rendertarget_phase_gasmask_diffuse.cpp">
+      <Filter>Core_Target</Filter>
+    </ClCompile>
+    <ClCompile Include="r2_rendertarget_phase_gasmask_dudv.cpp">
+      <Filter>Core_Target</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
