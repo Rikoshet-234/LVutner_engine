@@ -42,6 +42,7 @@
 #include "game_cl_base_weapon_usage_statistic.h"
 #include "clsid_game.h"
 #include "alife_simulator_header.h"
+#include "actorcondition.h"
 
 #ifdef DEBUG
 #	include "debug_renderer.h"
@@ -571,9 +572,9 @@ BOOL CActor::net_Spawn		(CSE_Abstract* DC)
 
 	// *** movement state - respawn
 	mstate_wishful			= 0;
-	if ( m_loaded_ph_box_id == 1 )
+	if ( m_loaded_ph_box_id == 1 || m_loaded_ph_box_id == 3 )
 	  mstate_real = mcCrouch;
-	else if ( m_loaded_ph_box_id == 2 )
+	else if ( m_loaded_ph_box_id == 2 || m_loaded_ph_box_id == 4 )
 	  mstate_real = mcCrouch|mcAccel;
 	else
 	  mstate_real = 0;
@@ -746,6 +747,7 @@ void CActor::net_Relcase	(CObject* O)
 
 	memory().remove_links(O);
 	m_pPhysics_support->in_NetRelcase(O);
+	conditions().net_Relcase( O );
 }
 
 BOOL	CActor::net_Relevant		()				// relevant for export to server

@@ -5,6 +5,7 @@
 
 #include "EntityCondition.h"
 #include "actor_defs.h"
+#include "..\xr_3da\feel_touch.h"
 
 template <typename _return_type>
 class CScriptCallbackEx;
@@ -66,6 +67,9 @@ public:
 	float				GetSatiety			()  {return m_fSatiety;}
 	void				SetMaxWalkWeight	(float _weight) { m_MaxWalkWeight = _weight; }
 
+	void		AffectDamage_InjuriousMaterialAndMonstersInfluence();
+	float		GetInjuriousMaterialDamage	();
+
 public:
 	IC		CActor		&object						() const
 	{
@@ -75,6 +79,9 @@ public:
 	virtual void			save					(NET_Packet &output_packet);
 	virtual void			load					(IReader &input_packet);
 	float	m_MaxWalkWeight;
+
+	bool	DisableSprint							(SHit* pHDS);
+	float	HitSlowmo								(SHit* pHDS);
 
 protected:
 	float m_fAlcohol;
@@ -99,6 +106,8 @@ protected:
 	float m_fOverweightJumpK;
 	float m_fAccelK;
 	float m_fSprintK;
+
+	float	m_f_time_affected;
 	
 	//порог силы и здоровья меньше которого актер начинает хромать
 	float m_fLimpingPowerBegin;
@@ -111,4 +120,12 @@ protected:
 
 	float m_fLimpingHealthBegin;
 	float m_fLimpingHealthEnd;
+
+protected:
+	Feel::Touch* monsters_feel_touch;
+	float        monsters_aura_radius;
+
+public:
+	void net_Relcase( CObject* O );
+	void set_monsters_aura_radius( float r ) { if ( r > monsters_aura_radius ) monsters_aura_radius = r; };
 };

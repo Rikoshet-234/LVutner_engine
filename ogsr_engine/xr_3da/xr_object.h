@@ -17,6 +17,7 @@ class	CSE_Abstract;
 
 //-----------------------------------------------------------------------------------------------------------
 #define CROW_RADIUS	(30.f)
+#define CROW_RADIUS2	(60.f)
 //-----------------------------------------------------------------------------------------------------------
 //	CObject
 //-----------------------------------------------------------------------------------------------------------
@@ -77,7 +78,7 @@ public:
 		void							MakeMeCrow_internal	();
 		void							MakeMeCrow			();
 
-	ICF	void							IAmNotACrowAnyMore	()					{ Props.crow = false;	}
+	ICF	void							IAmNotACrowAnyMore	()					{ Props.crow = 0;	}
 	virtual BOOL						AlwaysTheCrow		()					{ return FALSE; }
 
 	// Network

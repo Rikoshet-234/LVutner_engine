@@ -309,10 +309,12 @@ float CEntityCondition::HitPowerEffect(float power_loss)
 
 CWound* CEntityCondition::AddWound(float hit_power, ALife::EHitType hit_type, u16 element)
 {
+/*
 	if ( element == BI_NONE ) {
 	  Msg( "! [%s]: %s: BI_NONE -> 0", __FUNCTION__, m_object->cName().c_str() );
 	  element = 0;
 	}
+*/
 
 	//максимальное число косточек 64
 	VERIFY(element  < 64 || BI_NONE == element);
@@ -482,14 +484,6 @@ void CEntityCondition::UpdateEntityMorale()
 	{
 		m_fDeltaEntityMorale += m_change_v.m_fV_EntityMorale*m_fDeltaTime;
 	}
-}
-
-
-bool CEntityCondition::IsLimping() const
-{
-	if (!m_use_limping_state)
-		return	(false);
-	return (m_fPower*GetHealth() <= m_limping_threshold);
 }
 
 void CEntityCondition::save	(NET_Packet &output_packet)
