@@ -23,6 +23,7 @@
 ////////////////////////////
 #include "blender_gasmask_dudv.h"
 #include "blender_gasmask_diffuse.h"
+#include "blender_lut.h"
 ////////////////////////////
 void	CRenderTarget::u_setrt			(const ref_rt& _1, const ref_rt& _2, const ref_rt& _3, IDirect3DSurface9* zb)
 {
@@ -268,6 +269,7 @@ CRenderTarget::CRenderTarget		()
 ///////////////////////////////////
 	b_gasmask_dudv = xr_new<CBlender_gasmask_dudv>();
 	b_gasmask_diffuse = xr_new<CBlender_gasmask_diffuse>();
+	b_lut = xr_new<CBlender_lut>();
 ///////////////////////////////////
 
 	// KD shaders
@@ -286,6 +288,7 @@ CRenderTarget::CRenderTarget		()
 ///////////////////////////////////	
 	s_gasmask_dudv.create (b_gasmask_dudv,  "r2\\gasmask_dudv");
 	s_gasmask_diffuse.create (b_gasmask_diffuse,  "r2\\gasmask_diffuse");
+	s_lut.create (b_lut,  "r2\\lut");
 ///////////////////////////////////
 	u32		w = Device.dwWidth, h = Device.dwHeight;
 	//	NORMAL
@@ -758,5 +761,6 @@ CRenderTarget::~CRenderTarget	()
 /////////////////	
 	xr_delete(b_gasmask_dudv);
 	xr_delete(b_gasmask_diffuse);
+	xr_delete(b_lut);
 //////////////////////	
 }

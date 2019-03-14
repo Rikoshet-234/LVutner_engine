@@ -100,6 +100,7 @@ extern ECORE_API int			ps_r2_wait_sleep;
 extern ECORE_API int ps_GlowsPerFrame;
 
 extern ECORE_API float			ps_r2_mask_control;			// r2-only
+extern ECORE_API float			ps_r2_lut_control;			// r2-only
 
 
 extern ECORE_API float			ps_r2_ft_desaturation;

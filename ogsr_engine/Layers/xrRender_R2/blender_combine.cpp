@@ -55,7 +55,6 @@ void	CBlender_combine::Compile(CBlender_Compile& C)
 		C.r_Sampler_rtf("s_diffuse", r2_RT_albedo);
 		C.r_Sampler_rtf("s_rmap", r2_RT_rmap);
 		C.r_Sampler_clf("s_rain", r2_RT_rain);
-		C.r_Sampler_clf("s_lut_map","rebirth_resources\\lut_map");
 		C.r_End();
 		break;
 	case 3:	// copy sky to common rt
@@ -82,7 +81,6 @@ void	CBlender_combine::Compile(CBlender_Compile& C)
 		C.r_Sampler_clf("s_refl", r2_RT_reflections);
 		C.r_Sampler_rtf("s_diffuse", r2_RT_albedo);
 		C.r_Sampler_rtf("s_rmap", r2_RT_rmap);
-		C.r_Sampler_clf("s_lut_map","rebirth_resources\\lut_map");
 		C.r_End();
 		break;
 	case 5:	// clear position texture
