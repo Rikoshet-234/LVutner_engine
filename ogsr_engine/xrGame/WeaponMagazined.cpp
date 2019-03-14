@@ -1097,12 +1097,16 @@ void CWeaponMagazined::PlayAnimShow()
 {
 	VERIFY(GetState()==eShowing);
 	m_pHUD->animPlay(random_anim(mhud.mhud_show),FALSE,this,GetState());
+	LPCSTR AnimName = "_draw";
+	inherited::WeaponCamEffector(AnimName);
 }
 
 void CWeaponMagazined::PlayAnimHide()
 {
 	VERIFY(GetState()==eHiding);
 	m_pHUD->animPlay (random_anim(mhud.mhud_hide),TRUE,this,GetState());
+	LPCSTR AnimName = "_holster";
+	inherited::WeaponCamEffector(AnimName);
 }
 
 
@@ -1110,6 +1114,8 @@ void CWeaponMagazined::PlayAnimReload()
 {
 	VERIFY(GetState()==eReload);
 	m_pHUD->animPlay(random_anim(mhud.mhud_reload),TRUE,this,GetState());
+	LPCSTR AnimName = "_reload";
+	inherited::WeaponCamEffector(AnimName);
 }
 
 
@@ -1151,6 +1157,8 @@ void CWeaponMagazined::PlayAnimShoot()
 {
 	VERIFY(GetState()==eFire || GetState()==eFire2);
 	m_pHUD->animPlay(random_anim(mhud.mhud_shots), TRUE, this, GetState());
+	LPCSTR AnimName = "_shoot";
+	inherited::WeaponCamEffector(AnimName);
 }
 
 void CWeaponMagazined::OnZoomIn			()

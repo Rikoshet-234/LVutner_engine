@@ -200,7 +200,7 @@ public:
 
 	u8		GetAddonsState						()		const		{return m_flagsAddOnState;};
 	void	SetAddonsState						(u8 st)	{m_flagsAddOnState=st;}//dont use!!! for buy menu only!!!
-
+	void			WeaponCamEffector		(LPCSTR name);
                                                                                //названия секций подключаемых аддонов
     shared_str		m_sScopeName;
     shared_str		m_sSilencerName;
