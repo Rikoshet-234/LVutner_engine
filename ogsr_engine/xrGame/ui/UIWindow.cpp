@@ -250,21 +250,13 @@ void CUIWindow::AttachChild(CUIWindow* pChild)
 	m_ChildWndList.push_back(pChild);
 }
 
-void CUIWindow::DetachChild(CUIWindow* pChild, bool from_destructor)
+void CUIWindow::DoDetachChild(CUIWindow* pChild, bool from_destructor)
 {
 	if(!pChild)
 		return;
-	
+
 	if( GetMouseCapturer() == pChild )
 		SetMouseCapture(pChild, false);
-
-	try {
-		m_ChildWndList.remove(pChild);
-	}
-	catch(...)
-	{
-		ASSERT_FMT(std::find(m_ChildWndList.begin(), m_ChildWndList.end(), pChild) == m_ChildWndList.end(), "Can't remove pointer [%x] from m_ChildWndList", pChild);
-	}
 
 	pChild->SetParent(NULL);
 
@@ -277,11 +269,27 @@ void CUIWindow::DetachChild(CUIWindow* pChild, bool from_destructor)
 		xr_delete(pChild);
 }
 
+void CUIWindow::DetachChild(CUIWindow* pChild, bool from_destructor)
+{
+	if(!pChild)
+		return;
+
+	__try {
+		m_ChildWndList.remove(pChild);
+	}
+	__except (ExceptStackTrace("Exception catched in m_ChildWndList.remove(pChild)")) {
+		FATAL("Exception catched in m_ChildWndList.remove(pChild)! Please send logs and minidumps to the engine developers!");
+	}
+
+	DoDetachChild( pChild, from_destructor );
+}
+
 void CUIWindow::DetachAll()
 {
-	while (!m_ChildWndList.empty()) {
-		DetachChild(m_ChildWndList.back());
-	}
+  auto tmp_m_ChildWndList = m_ChildWndList;
+  m_ChildWndList.clear();
+  for ( CUIWindow* pChild : tmp_m_ChildWndList )
+    DoDetachChild( pChild );
 }
 
 void CUIWindow::GetAbsoluteRect(Frect& r) 
