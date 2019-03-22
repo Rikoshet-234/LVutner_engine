@@ -86,9 +86,13 @@ void CWeaponPistol::PlayAnimShow	()
 	if(m_opened){ 
 		CWeaponPistol::WWPMotions& m = wwpm_current();
 		m_pHUD->animPlay(random_anim(m.mhud_show_empty),FALSE, this, GetState());
+		LPCSTR AnimName = "_draw_empty";
+		inherited::WeaponCamEffector(AnimName);
 	}else{ 
 		CWeaponMagazined::SWMmotions& m = swm_current();
 		m_pHUD->animPlay(random_anim(m.mhud_show),FALSE, this, GetState());
+		LPCSTR AnimName = "_draw";
+		inherited::WeaponCamEffector(AnimName);
 	}
 }
 
@@ -118,7 +122,8 @@ void CWeaponPistol::PlayAnimReload	()
 		CWeaponMagazined::SWMmotions& m = swm_current();
 		m_pHUD->animPlay(random_anim(m.mhud_reload), TRUE, this, GetState());
 	}
-	
+	LPCSTR AnimName = "_reload";
+	CWeapon::WeaponCamEffector(AnimName);	
 	m_opened = false;		
 }
 
@@ -131,9 +136,13 @@ void CWeaponPistol::PlayAnimHide()
 		PlaySound			(sndClose,get_LastFP());
 		CWeaponPistol::WWPMotions& m = wwpm_current();
 		m_pHUD->animPlay	(random_anim(m.mhud_close), TRUE, this, GetState());
+		LPCSTR AnimName = "_holster_empty";
+		inherited::WeaponCamEffector(AnimName);
 	} 
 	else 
 		inherited::PlayAnimHide();
+	LPCSTR AnimName = "_holster";
+	inherited::WeaponCamEffector(AnimName);
 }
 
 void CWeaponPistol::PlayAnimShoot	()

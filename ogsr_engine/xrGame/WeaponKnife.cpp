@@ -209,10 +209,22 @@ void CWeaponKnife::switch2_Attacking	(u32 state)
 	m_bPending = true;
 
 	if(state==eFire)
+	{
 		m_pHUD->animPlay(random_anim(mhud_attack),		FALSE, this, state);
-	else //eFire2
+		m_attackStart	= true;
+		m_bPending		= true;
+		LPCSTR AnimName = "_kick_start1";
+		inherited::WeaponCamEffector(AnimName);
+	}
+	else 
+	{//eFire2
 		m_pHUD->animPlay(random_anim(mhud_attack2),		FALSE, this, state);
-
+		m_attackStart	= true;
+		m_bPending		= true;
+		LPCSTR AnimName = "_kick_start2";
+		inherited::WeaponCamEffector(AnimName);
+	}
+	
 	StateSwitchCallback(GameObject::eOnActorWeaponFire, GameObject::eOnNPCWeaponFire);
 }
 
@@ -228,6 +240,8 @@ void CWeaponKnife::switch2_Hiding	()
 	FireEnd					();
 	VERIFY(GetState()==eHiding);
 	m_pHUD->animPlay		(random_anim(mhud_hide), TRUE, this, GetState());
+	LPCSTR AnimName = "_holster";
+	inherited::WeaponCamEffector(AnimName);
 //	m_bPending				= true;
 }
 
@@ -241,6 +255,8 @@ void CWeaponKnife::switch2_Showing	()
 {
 	VERIFY(GetState()==eShowing);
 	m_pHUD->animPlay		(random_anim(mhud_show), FALSE, this, GetState());
+	LPCSTR AnimName = "_draw";
+	inherited::WeaponCamEffector(AnimName);
 //	m_bPending				= true;
 }
 

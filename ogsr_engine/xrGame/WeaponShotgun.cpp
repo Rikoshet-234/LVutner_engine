@@ -383,6 +383,8 @@ void CWeaponShotgun::PlayAnimAddOneCartridgeWeapon()
 {
 	VERIFY(GetState()==eReload);
 	m_pHUD->animPlay(random_anim(mhud_add_cartridge),TRUE,this,GetState());
+	LPCSTR AnimName = "_reload";
+	inherited::WeaponCamEffector(AnimName);
 }
 void CWeaponShotgun::PlayAnimCloseWeapon()
 {
