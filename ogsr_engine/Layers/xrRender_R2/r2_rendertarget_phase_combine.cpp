@@ -203,8 +203,8 @@ void	CRenderTarget::phase_combine	()
 			// screen space "eyes" effects
 			phase_gasmask_dudv();
 			phase_gasmask_diffuse();
-			if (ps_r2_pp_flags.test(R2PP_FLAG_RAIN_DROPS)
-				&& ps_r2_pp_flags.test(R2PP_FLAG_RAIN_DROPS_CONTROL))	phase_rain_drops();
+			if (ps_r2_pp_flags.test(R2PP_FLAG_RAIN_DROPS))
+				phase_rain_drops();
 		}
 	}
 	else if (R2RM_THERMAL == GetRenderMode())

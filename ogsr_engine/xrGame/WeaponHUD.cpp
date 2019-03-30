@@ -11,6 +11,7 @@
 #include "MathUtils.h"
 #include "actor.h"
 #include "ActorCondition.h"
+#include "hudmanager.h"
 
 weapon_hud_container* g_pWeaponHUDContainer=0;
 
@@ -92,6 +93,9 @@ CWeaponHUD::CWeaponHUD			(CHudItem* pHudItem)
 	m_bHidden					= true;
 	m_bStopAtEndAnimIsRunning	= false;
 	m_pCallbackItem				= NULL;
+	m_bCollideHud = true;
+	m_collision			= xr_new<CWeaponCollision>();
+
 	if (Core.Features.test(xrCore::Feature::wpn_bobbing))
 		m_bobbing = xr_new<CWeaponBobbing>();
 	m_Transform.identity		();
@@ -99,6 +103,7 @@ CWeaponHUD::CWeaponHUD			(CHudItem* pHudItem)
 
 CWeaponHUD::~CWeaponHUD()
 {
+	xr_delete(m_collision);
 	if (Core.Features.test(xrCore::Feature::wpn_bobbing))
 		xr_delete(m_bobbing);
 }
@@ -106,6 +111,8 @@ CWeaponHUD::~CWeaponHUD()
 void CWeaponHUD::Load(LPCSTR section)
 {
 	m_shared_data.create		(section,m_pParentWeapon);
+ 	if(pSettings->line_exist(section, "collide_hud"))
+ 		m_bCollideHud = !!pSettings->r_bool(section,"collide_hud");
 }
 
 void  CWeaponHUD::Init()
@@ -129,8 +136,14 @@ void CWeaponHUD::UpdatePosition(const Fmatrix& trans)
 	{
 		m_bobbing->Update(xform);
 	}
-	m_Transform.mul				(xform,m_shared_data.get_value()->m_offset);
-	VERIFY						(!fis_zero(DET(m_Transform)));
+
+	Fmatrix offset = m_shared_data.get_value()->m_offset;
+	collide::rq_result& RQ = HUD().GetCurrentRayQuery();
+	CActor * pActor = smart_cast<CActor*>(m_pParentWeapon->object().H_Parent());
+
+	if (m_bCollideHud && pActor)
+			m_collision->Update(offset, RQ.range, pActor->IsZoomAimingMode());
+	m_Transform.mul(xform, offset);
 }
 
 MotionID CWeaponHUD::animGet(LPCSTR name)

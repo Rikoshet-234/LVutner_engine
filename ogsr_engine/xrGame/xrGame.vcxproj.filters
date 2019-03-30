@@ -6088,6 +6088,9 @@
     <ClInclude Include="ai\monsters\controller\controller_psy_hit_effector.h">
       <Filter>AI\AMonsters\monsters\Controller\Psy hit</Filter>
     </ClInclude>
+    <ClInclude Include="weapon_collision.h">
+      <Filter>Core\Client\Objects\items &amp; weapons\Weapons\HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="damage_manager.cpp">
@@ -8882,6 +8885,9 @@
     </ClCompile>
     <ClCompile Include="ai\monsters\controller\controller_psy_hit_effector.cpp">
       <Filter>AI\AMonsters\monsters\Controller\Psy hit</Filter>
+    </ClCompile>
+    <ClCompile Include="weapon_collision.cpp">
+      <Filter>Core\Client\Objects\items &amp; weapons\Weapons\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

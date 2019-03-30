@@ -7,7 +7,7 @@ class CHudItem;
 
 #define CROUCH_FACTOR	0.75f
 #define SPEED_REMINDER	5.f 
-
+#include "weapon_collision.h"
 class CWeaponBobbing
 {
 	public:
@@ -84,7 +84,7 @@ class CWeaponHUD
 	//флаг, если hud спрятан не показывается
 	bool				m_bHidden;
 	bool				m_bVisible;
-
+	bool				m_bCollideHud;
 	Fmatrix				m_Transform;
 
 	//shared HUD data
@@ -161,6 +161,8 @@ public:
 
 private:
 	CWeaponBobbing *m_bobbing;
+private:
+	CWeaponCollision *m_collision;
 };
 
 #define		MAX_ANIM_COUNT							8
