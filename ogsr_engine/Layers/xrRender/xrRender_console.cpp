@@ -66,7 +66,7 @@ Fvector		ps_r2_blur_params = { 0.5,5,30 };
 Fvector4	ps_r2_color_grading_params = { 0.0,0.0,0.0,0.0 };
 Fvector		ps_r2_details_opt = { 150,200,250 };
 float		center_height = 40;
-float		ps_r2_sharpening = 0.f;
+float		ps_r2_sharpening = 0.01f;
 float		ps_r2_ndr = 0.f;
 float		ps_r2_ao_intensity = 1.f;
 
@@ -685,7 +685,7 @@ void		xrRender_initconsole	()
 	CMD3(CCC_Mask, "r2_lens_dirt", &ps_r2_ls_flags, R2FLAG_LENS_DIRT);
 	//	CMD3(CCC_Mask,		"r2_rain_map",				&ps_r2_test_flags,		R2FLAG_RAIN_MAP);
 
-	CMD4(CCC_Float, "r2_image_sharpening", &ps_r2_sharpening, 0.0, 1.0);
+	CMD4(CCC_Float, "r2_image_sharpening", &ps_r2_sharpening, 0.01, 2.0);
 	CMD3(CCC_Mask, "r2_wet_surfaces", &ps_r2_ls_flags, R2FLAG_WET_SURFACES);
 	CMD4(CCC_Float,	"r2_no_details_radius",		&ps_r2_ndr,					0.f, 5.f);
 	CMD3(CCC_Mask, "r2_puddles", &ps_r2_ls_flags, R2FLAG_PUDDLES);

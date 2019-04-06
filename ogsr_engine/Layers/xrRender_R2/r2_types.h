@@ -95,8 +95,8 @@ const		u32					TEX_material_LdotH	= 256	;	// specular,	Y
 const		u32					TEX_jitter			= 64	;
 const		u32					TEX_jitter_count	= 4		;
 
-const		u32					BLOOM_size_X		= 512;
-const		u32					BLOOM_size_Y		= 512	;
+const		u32					BLOOM_size_X		= 128;
+const		u32					BLOOM_size_Y		= 128	;
 const		u32					LUMINANCE_size		= 16	;
 
 // deffer

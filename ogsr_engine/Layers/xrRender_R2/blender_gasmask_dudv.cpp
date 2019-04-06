@@ -12,7 +12,9 @@ void CBlender_gasmask_dudv::Compile(CBlender_Compile& C)
 	C.r_Pass("null", "gasmask_dudv", FALSE, FALSE, FALSE);
 	C.r_Sampler_clf("s_image", r2_RT_generic0);
 	C.r_Sampler_clf("s_bloom", r2_RT_bloom1);
-	
+
+	C.r_Sampler_clf("s_mask_drops", "gasmasks\\mask_drops");
+
 	C.r_Sampler_clf("s_mask_nm_1", "gasmasks\\mask_nm_1");
 	C.r_Sampler_clf("s_mask_nm_2", "gasmasks\\mask_nm_2");
 	C.r_Sampler_clf("s_mask_nm_3", "gasmasks\\mask_nm_3");
