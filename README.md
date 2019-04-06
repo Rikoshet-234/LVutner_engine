@@ -15,4 +15,4 @@
 * [ForserX](https://github.com/ForserX)
 * [Xottab-DUTY](https://github.com/Xottab-DUTY)
 * [Shoker](https://github.com/ShokerStlk)
-* И многих других, чьи работы я использовал. Пишите, если забыл кого-то, добавлю в список.
+* And others. Thanks.
