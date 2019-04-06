@@ -1,7 +1,7 @@
 # OGSR Engine R.E.B.I.R.T.H. Edition [![Build status](https://ci.appveyor.com/api/projects/status/mpktoskmr2y2s60l/branch/main?svg=true)](https://ci.appveyor.com/project/OGSR/ogsr-engine/branch/main)
-![Logo](https://imgur.com/IK1Wy16.png)
+                                              ![Logo](https://imgur.com/IK1Wy16.png)
 
-### Инструкции по сборке: ###
+### How to compile it:: ###
 * Use VS2017, along with SDK10, and SDK8.
 * Open Engine.sln
 * Configuration should be Release x64
